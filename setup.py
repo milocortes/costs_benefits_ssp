@@ -15,7 +15,8 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/milocortes/costs_benefits_ssp.git",
     install_requires=[
-        "SQLAlchemy>=2.0.36"
+        "SQLAlchemy>=2.0.0",
+        "openpyxl>=3.1.0"
     ],
     packages=find_packages(exclude=("tests",)),
     classifiers=[

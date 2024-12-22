@@ -93,8 +93,18 @@ class CostFactor(Base):
     tx_table =  relationship("TXTable", backref=backref('cost_factors', order_by=output_variable_name))
 
     def __repr__(self):
-        return "CostFactor(output_variable_name={self.output_variable_name}, " \
-                      "difference_variable={self.difference_variable})".format(self=self)
+        return "CostFactor(\n\t\toutput_variable_name = {self.output_variable_name}," \
+                      "\n\t\tdifference_variable = {self.difference_variable},"\
+                      "\n\t\tmultiplier = {self.multiplier},"\
+                      "\n\t\tmultiplier_unit = {self.multiplier_unit},"\
+                      "\n\t\tannual_change = {self.annual_change},"\
+                      "\n\t\toutput_display_name = {self.output_display_name},"\
+                      "\n\t\tsum = {self.sum},"\
+                      "\n\t\tnatural_multiplier_units = {self.natural_multiplier_units},"\
+                      "\n\t\tdisplay_notes = {self.display_notes},"\
+                      "\n\t\tinternal_notes = {self.internal_notes},"\
+                      "\n\t\tcb_function = {self.cb_function},"\
+                      "\n\t\tcb_var_group = {self.cb_var_group}) ".format(self=self)
 
 """
 ++++++++++++++++++++++++++++++++
@@ -134,7 +144,7 @@ class AttTransformationCode(Base):
 """
 
 class AgrcLVSTProductivityCostGDP(Base):
-    __tablename__ = "agrc_lvst_productivity_cost_gdp"
+    __tablename__ = "agrc_lvst_productivity_costgdp"
 
     iso_code3 = Column(String(), ForeignKey('countries_by_iso.iso_code3'), primary_key=True)
     cost_of_productivity_improvements_pct_gdp = Column(Float())
@@ -205,7 +215,7 @@ class PFLOTransitionNewDiets(Base):
     frac_gnrl_w_original_diet = Column(Float())
 
 class WALISanitationClassificationSP(Base):
-    __tablename__ = "wali_sanitation_classification_strategy_specific_function"
+    __tablename__ = "wali_sanitation_classification"
 
 
     variable = Column(String(), primary_key = True)
