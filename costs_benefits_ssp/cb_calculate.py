@@ -563,7 +563,7 @@ class CostBenefits:
                 df.to_excel(writer, sheet_name=tb.__tablename__, index=False)
 
 
-    def load_cb_parameters_(
+    def load_cb_parameters(
         self, 
         FP : str
         ) -> None:
