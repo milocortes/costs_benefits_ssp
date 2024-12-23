@@ -614,6 +614,8 @@ class CostBenefits:
                     [tb_model(**{tb_fields : record_fields for tb_fields,record_fields in zip(data_fields, record)}) for record in df_tb.to_records(index = False) ]
                 )
 
+            self.session.commit()
+
             print("Se actualizó la base de datos")
 
 
