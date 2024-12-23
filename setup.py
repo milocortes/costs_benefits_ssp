@@ -9,8 +9,9 @@ setup(
     name="costs_benefits_ssp",
     version="0.0.1",
     author="Hermilo Cortés",
-    author_email="hermilocg@tec.com",
-    description="Costs and Benefits package ",
+    author_email="hermilocg@tec.mx",
+    description="Costs and Benefits package",
+    include_package_data = True,
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/milocortes/costs_benefits_ssp.git",
@@ -19,6 +20,9 @@ setup(
         "openpyxl>=3.1.0"
     ],
     packages=find_packages(exclude=("tests",)),
+    package_data={
+        'costs_benefits_ssp': ['database/cb_data.db']
+    }
     classifiers=[
         "Development Status :: 4 - Beta",
         "Programming Language :: Python :: 3",
