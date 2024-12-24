@@ -21,7 +21,7 @@ setup(
     ],
     packages=find_packages(exclude=("tests",)),
     package_data={
-        'costs_benefits_ssp': ['database/cb_data.db']
+        'costs_benefits_ssp': ['database/backup/cb_data.db']
     },
     classifiers=[
         "Development Status :: 4 - Beta",
