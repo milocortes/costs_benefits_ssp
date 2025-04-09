@@ -1048,7 +1048,9 @@ class CostBenefits:
 
             diff_clinker["value"] = diff_clinker["difference_value"]*cb_orm.multiplier*cb_orm.annual_change**diff_clinker["time_period_for_multiplier_change"]
 
-            diff_clinker = diff_clinker[SSP_GLOBAL_COLNAMES_OF_RESULTS]
+            GUARDA_COLS = list(set(data_merged.columns).intersection(SSP_GLOBAL_COLNAMES_OF_RESULTS))
+
+            diff_clinker = diff_clinker[GUARDA_COLS]
 
             data_amt_cement = self.cb_get_data_from_wide_to_long(data, cb_orm.strategy_code_tx, 'prod_ippu_cement_tonne')
             
@@ -1063,8 +1065,11 @@ class CostBenefits:
             ## Agregamos usado para calcular la diferencia en la estrategia baseline y el pathway
             ## En este caso, se pondrá cero en el valor del baseline
             data_output['variable_value_baseline'] = 0 
-            data_output['variable_value_pathway'] = data_merged["difference_value"]
 
+            if "difference_value"in list(data_merged.columns):
+                data_output['variable_value_pathway'] = data_merged["difference_value"]
+            else:
+                data_output['variable_value_pathway'] = 0.0
             return data_output
 
         else:
