@@ -861,8 +861,10 @@ class CostBenefits:
             ## Agregamos usado para calcular la diferencia en la estrategia baseline y el pathway
             ## En este caso, se pondrá cero en el valor del baseline
             tmp['variable_value_baseline'] = 0
-            tmp['variable_value_pathway'] = tmp["difference"]
-
+            if "difference" in list(tmp.columns):
+                tmp['variable_value_pathway'] = tmp["difference"]
+            else:
+                tmp['variable_value_pathway'] = 0.0
             output = tmp.copy()
         
             return output 
