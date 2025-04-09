@@ -935,7 +935,8 @@ class CostBenefits:
             data_merged["time_period_for_multiplier_change"] = np.maximum(0,data_merged["time_period"]-SSP_GLOBAL_TIME_PERIOD_2023)
             data_merged["value"] = data_merged["difference_value"]*cb_orm.multiplier*cb_orm.annual_change**data_merged["time_period_for_multiplier_change"]    
         
-            data_merged_results = data_merged[SSP_GLOBAL_COLNAMES_OF_RESULTS]
+            GUARDA_COLS = list(set(data_merged.columns).intersection(SSP_GLOBAL_COLNAMES_OF_RESULTS))
+            data_merged_results = data_merged[GUARDA_COLS]
         
             #any divide-by-zero NAs from our earlier division gets a 0
             data_merged_results = data_merged_results.replace(np.nan, 0.0)
