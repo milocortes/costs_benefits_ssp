@@ -1048,7 +1048,7 @@ class CostBenefits:
 
             diff_clinker["value"] = diff_clinker["difference_value"]*cb_orm.multiplier*cb_orm.annual_change**diff_clinker["time_period_for_multiplier_change"]
 
-            GUARDA_COLS = list(set(data_merged.columns).intersection(SSP_GLOBAL_COLNAMES_OF_RESULTS))
+            GUARDA_COLS = list(set(diff_clinker.columns).intersection(SSP_GLOBAL_COLNAMES_OF_RESULTS))
 
             diff_clinker = diff_clinker[GUARDA_COLS]
 
