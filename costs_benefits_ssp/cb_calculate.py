@@ -1315,13 +1315,20 @@ class CostBenefits:
             #data_merged["variable"] = data_merged["variable"].apply(lambda x : f"{cb_orm.output_variable_name[:-1]}{x}")
             data_merged["variable"] = cb_orm.output_variable_name
             data_merged["value"] = data_merged["difference_value"]*cb_orm.multiplier
-            data_merged = data_merged[SSP_GLOBAL_COLNAMES_OF_RESULTS]
+
+            GUARDA_COLS = list(set(data_merged.columns).intersection(SSP_GLOBAL_COLNAMES_OF_RESULTS))
+            
+            #data_merged = data_merged[SSP_GLOBAL_COLNAMES_OF_RESULTS]
+            data_merged = data_merged[GUARDA_COLS]
 
             ## Agregamos usado para calcular la diferencia en la estrategia baseline y el pathway
             ## En este caso, se pondrá cero en el valor del baseline
             data_merged['variable_value_baseline'] = 0 
-            data_merged['variable_value_pathway'] = data_merged["difference_value"]
 
+            if "difference_value" in list(data_merged.columns):
+                data_merged['variable_value_pathway'] = data_merged["difference_value"]
+            else:
+                data_merged['variable_value_pathway'] = 0.0
             return data_merged 
 
         else:
