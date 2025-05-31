@@ -32,7 +32,7 @@ jobs:
           version: "0.7.8"
 
       - name: Install the project
-        run: uv sync --locked --all-extras --dev
+        run: uv lock && uv sync --locked --all-extras --dev
 
       - name: Build source and wheel distribution
         run: uv build
