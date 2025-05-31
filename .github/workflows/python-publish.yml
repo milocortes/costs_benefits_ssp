@@ -40,7 +40,7 @@ jobs:
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:
-          name: release-dists
+          name: dists
           path: dist/
 
   pypi-publish:
@@ -63,13 +63,11 @@ jobs:
       # url: https://pypi.org/project/YOURPROJECT/${{ github.event.release.name }}
 
     steps:
-      - name: Retrieve release distributions
-        uses: actions/download-artifact@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
         with:
-          name: release-dists
+          name: dist
           path: dist/
 
-      - name: Publish release distributions to PyPI
+      - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: dist/
