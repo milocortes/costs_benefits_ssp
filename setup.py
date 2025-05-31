@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="costs_benefits_ssp",
-    version="0.1.1",
+    version="0.1.3",
     author="Hermilo Cortés",
     author_email="hermilocg@tec.mx",
     description="Costs and Benefits package",
@@ -16,9 +16,9 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/milocortes/costs_benefits_ssp.git",
     install_requires=[
-        "SQLAlchemy>=2.0.0",
-        "openpyxl>=3.1.0",
-        "pandas>=2.0.0"
+        "openpyxl==3.1.5",
+        "pandas==2.2.3",
+        "sqlalchemy==2.0.36",
     ],
     packages=find_packages(exclude=("tests",)),
     package_data={
