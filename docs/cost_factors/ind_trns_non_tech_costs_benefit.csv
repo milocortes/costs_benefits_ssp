@@ -1,0 +1,16 @@
+Benefit or cost,"Value
+(LAC average in 2019 USD)
+(Positive values indicate benefits and savings)",Notes and data sources
+"Avoided health effects from local air pollution from concrete production, excluding industrial energy pollution",- $45/ton cement,"Miller et al., (2020, Figure 2) estimate cement externalities of $80-90/ton in Latin America in 2015 dollars, of which at least 75% stem from local air pollution’s health effects. Of this, at least 70% is from process-based (i.e., non-energy) emissions."
+Avoided health impacts from local air pollution from industrial on-site energy,"- $2.47/GJ coal
+
+- $0.12/GJ natural gas 
+
+- $2.47/GJ coke (a coal-based fuel) 
+
+- $0.31/l diesel      
+
+- $0.039/l gasoline      
+
+- $3.05/GJ biomass
+","We use IMF’s fossil-fuel subsidies database (2021) to calculate the avoided air pollution costs of industrial fuel consumption. This database provides costs specific to industry’s use of coal and natural gas. We use average values across LAC. We use coal costs for coke, and use costs shown in transport for diesel and gasoline. For biomass, we use average pollution costs across other fuel types."

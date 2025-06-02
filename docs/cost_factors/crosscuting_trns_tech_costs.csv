@@ -1,0 +1,9 @@
+Transformation,"Technical costs
+(LAC average in 2019 USD)
+(Negative values indicate avoided costs, i.e., savings)",Notes and data sources
+Reducing supply chain losses and waste,"- $400/ton of food waste avoided
+
+- $500/ton of food waste avoided
+","- Costs are based on the average per-ton costs of methods of reducing producer-side food waste in the United States, weighted by their effect size ($700 in 2016), based on data found in the appendix of ReFED (2016), adjusted to LAC. We expect this is an overestimate of costs, given that Latin America’s food industry is generally less well developed than the United States, and gains may be available at a lower cost.                                                                                                                                                  -  Food waste occurs across food types, and without specific information on the types of food that are wasted and the recovery potential in the supply chain, we use the average cost of food across all product types. We reduce this value given that the food that is recovered from waste may be of lower value than food that is not wasted."
+Increasing crop or livestock productivity,- Varies by country,"This is deeply uncertain. As an initial estimate, we use the average annual investment in agriculture and livestock research and development (R&D) in OECD countries, as a fraction of GDP (roughly 0.02%). We use that fraction for OECD countries in LAC; for others, we increase that fraction by 20% to account for less-developed economies."
+Change in sector value add,- Price per ton varies by type of product,"- Food waste occurs across food types, and without specific information on the types of food that are wasted and the recovery potential in the supply chain, we use the average cost of food across all product types. We reduce this value given that the food that is recovered from waste may be of lower value than food that is not wasted."

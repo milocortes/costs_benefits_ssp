@@ -1,0 +1,25 @@
+Waste management,Technical costs,Data source
+Collection,- $86/ton of waste,"World Bank (2012) provides costs for collecting and managing waste for countries of different income groups. We use a LAC average to average costs between lower-middle and upper-middle income countries. We assume 70% of recycled and open dumped waste in LAC is collected, and 100% of waste in other management systems is collected. 
+ 
+"
+Management,"- $10/ton—open dumping
+
+- $57/ton—managed landfill
+
+- $61/ton—composting
+
+- $86/ton—anaerobic biogas
+
+- $72/ton—recycling
+
+- $70/ton—incineration
+","World Bank (2012) provides costs for collecting and managing waste for countries of different income groups. We use a LAC average to average costs between lower-middle and upper-middle income countries. We assume 70% of recycled and open dumped waste in LAC is collected, and 100% of waste in other management systems is collected. "
+Energy recovery,"- $170/ton waste feedstock (incineration)
+
+- $500/ton of gas recovered (landfills, anaerobic digesters)
+ 
+ ","For management without energy recovery, we use average costs across the lower-middle and upper-middle income tiers. The recycling cost includes the cost of separation and materials recovery. The processing and manufacturing costs are included in the value of recyclables (discussed in benefits) and estimated from the EPA’s documentation of paper recycling costs (EPA, 2019). 
+
+Cost for energy recovery is based on IEA estimates (2020f).
+"
+,, 

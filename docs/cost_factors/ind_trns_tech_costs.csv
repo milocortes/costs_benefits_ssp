@@ -1,0 +1,24 @@
+Transformation,"Technical costs (LAC average in 2019 USD) (Negative values indicate avoided costs, i.e., savings)",Notes and data sources
+"Reducing demand through material efficiency, longevity, and reuse (cement and steel)","- $85/ton cement avoided
+
+- $370/ton steel avoided
+","Efficiency in materials presents a savings equivalent to the cost of material use or production that is avoided, less the cost of efforts to implement efficiency and longevity measures. Here, we assume 90% of the cost of materials is realized as savings, with 10% used to achieve reductions. Steel’s cost in LAC is estimated at $410/ton (ITA, undated, adjusted from US prices in January 2019 of $800/ton) and the cost of cement is estimated at $94/ton (Sindicato Nacional da Indústria do Cimento, 2022)"
+Clinker substitution (cement),- $47/ton of clinker substitution ,"Leming et al. (2017) estimate that a ton of fly ash costs roughly one-third of a ton of cement, although more fly ash may be needed to replace an equivalent amount of clinker to achieve the same physical properties. We estimate therefore that each ton of substitution results in 50% savings in cement costs, which was approximately $94/ton in LAC in 2019 (Sindicato Nacional da Indústria do Cimento, 2022)."
+Improve energy efficiency of existing processes,- $10/GJ,"Talaei et al. (2019, Table 4) and Talaei et al. (2020, Table 6) estimate the capital cost of increasing energy efficiency of the existing Canadian cement and steel industries, respectively.  Average costs across interventions in both industries are CAD$18/gigajoule (GJ) for cement in and CAD$44/GJ for steel. "
+Electrify low-temperature industrial heat,"- $5/megawatt hour of thermal heat (MWhth) capital cost
+
+- $0.90/MWhth non-fuel operations and maintenance","Rissman (2022) estimates that heat pumps have a levelized capital cost of $8/MW of thermal heat demand compared to other technologies (although this cost premium is rapidly shrinking), and a $1.50 savings in non-fuel operating expenditure (opex) in the US in 2022 dollars. (No discount rate is documented in this report, and we use levelized costs as presented.)"
+Transition medium and high-temperature industrial heat to electricity and hydrogen,"- $15/MWhth capital cost
+
+- $0.90/MWhth non-fuel operations and maintenance","In the absence of other data, we estimate the costs to be triple that of low-temperature heat and equivalent maintenance savings."
+F-gas reduction (all industries that emit F-Gases),- $63/tCO2e,"The EPA (2019, undated) estimates that approximately 85% abatement of F-gases in Brazil, Argentina, and Venezuela (the three largest emitters in LAC) occur at a cost of less than $100 per tons of carbon dioxide equivalent (tCO2e) by 2050, in 2010 dollars. We use a weighted average to account for abatement that can occur at no cost and adjust to LAC in 2019 dollars."
+N2O abatement in chemicals industry (adipic and nitric acid production),"- $13/tCO2e
+","We use EPA data (2019, Table 5-10) to estimate an undiscounted abatement cost of $38/ton of adipic acid and $3/ton of nitric acid approximated (in the US in 2010 dollars). We use an average of these costs and adjust to LAC 2019 USD."
+"CCS for steel, cement, and other industries","- $40/ton CO2 (cement)
+
+- $50/ton CO2 (steel)
+
+- $100/ton CO2 (chemicals)
+","The IEA (2020b) estimates that CCS globally adds $30-50/ton cement, $50/ton of steel, and $100/ton of chemicals.
+
+"

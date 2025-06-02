@@ -1,0 +1,53 @@
+Benefit or cost,Value,Notes and data sources
+System cost of passenger transport,"- $0.17/vkm for automobiles
+
+- $0.017/vkm for motorcycles
+
+- $5.20/vkm for bus
+
+- $14/vkm for passenger rail
+
+- $1067/vkm for aviation
+
+- (Transit cost is weighted assuming 75% bus, 25% rail)
+","The system cost of providing passenger transport will change as modes and demand change. We approximate this as the cost of vehicle ownership and operating costs. In the US, the capital and operating costs (excluding fuel) by mode are approximately: 
+$0.31/vkm for automobiles (US DOT National Transportation Statistics, undated, Table 3-17);
+$10/vkm on for buses (averaged across bus types) and $27/vkm (per passenger car) for passenger rail (averaged across rail types) (US FTA, 2021, Capital Expenses, Operating Expenses, and Metrics tables);
+$2,000/vkm for aviation (calculated from US Department of Transportation National Transportation Statistics’ Tables 1-35, 1-40, and 3-20, assuming 10% of costs are for fuel); and 
+$0.031/vkm for powered bikes, which we assume are one-tenth the cost of automobiles. 
+Note that different modes may include infrastructure costs to different degrees – the cost of transport infrastructure is largely external to automobile owner/operating costs, whereas it is more likely to be internalized for air transport costs. We adapt these costs to Latin America. 
+"
+System cost of freight transport,"
+- $0.41/mtkm for air
+
+- $0.053/mtkm for truck
+
+- $0.014/mtkm for rail
+
+- $0.01/mtkm for water
+","We estimate the impact of mode shifting freight based on costs associated with freight transport in the US ($0.86/mtkm by air; $0.11/mtkm by truck; 0.03/mtkm by rail, and $0.02/mtkm by water) and adjust to LAC (US Department of Transportation’s National Transportation Statistics, undated, Table 3-21). We exclude fuel costs, assuming they account for 10% of the reported revenue cost. Note that different modes may include infrastructure costs to different degrees – the cost of transport infrastructure is largely external to automobile owner/operating costs, whereas it is more likely to be internalized for air transport costs.
+"
+Health benefit of avoided air pollution,"- $0.039/l gasoline and biofuels     
+
+- $0.31/l diesel
+","We use IMF’s fossil fuel subsidies database (2021) to estimate the avoided air pollution costs of fossil fuels used for road transport, averaged across LAC.
+"
+Avoided external crashes and congestion,"- Crash costs 
+
+- $0.33/l gasoline and biofuels   
+
+- $0.17/l diesel
+
+- $0.008/kwh electricity       
+   
+
+
+- Congestion costs
+
+- $0.19/l gasoline and biofuels      
+
+- $0.17/l diesel
+
+- $0.005/kwh electricity
+
+","We use IMF’s fossil-fuel subsidies database (2021) to estimate the avoided congestion and crash cost on roads. These costs are provided per liter of fuel and reflect external costs. We use average costs across LAC and calculate total crash costs assuming external crash costs are 75% of the total (Parry et al., 2014). We assume gasoline externalities apply to biofuels and we apply costs to EVs by calculating the cost per unit of energy, adjusting for approximately 4× higher energy efficiency of EVs. "

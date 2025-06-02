@@ -1,0 +1,8 @@
+Solid waste management,Category,Description
+Open dump ,Unmanaged,"Unmanaged discharge of solid waste (e.g., into above-ground piles, holes in the ground, or dumping into natural features such as ravines)"
+Open burning,Unmanaged,"Unmanaged combustion of waste (e.g., in open air or open dumps, where emissions are directly released into the air)"
+"Landfilling, with methane capture and flaring or reuse",Managed landfill,"Solid waste collected and deposited in managed sites. This category includes different levels of methane and capture and flaring or reuse, the latter of which is an input into the energy sector."
+composting,Managed biological treatment,"Diverting organic matter for biological treatment, where degradable organic carbon largely is converted to CO2. "
+Anaerobic biogas,Managed biological treatment,"Diverting organic matter to anaerobic biogas facilities, which expedites the natural decomposition of organic material without oxygen to generate CH4, which can be recovered for energy and is an input into the energy sector.
+"
+Recycling,Diversion,"Diverting paper, plastics, and other waste materials to reuse in industrial processes."

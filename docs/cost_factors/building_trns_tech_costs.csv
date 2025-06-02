@@ -1,0 +1,10 @@
+Transformation,"Technical costs
+(LAC average in 2019 USD)
+(Negative values indicate avoided costs, i.e., savings)",Notes and data sources
+Improve building and appliance efficiency,"- $0.02/kWh saved
+","Perry et al. (2019, p. 17) estimate the costs in 2018 dollars of reducing building energy demands through a variety of energy-efficiency measures in the US (for purposes of comparing them to the costs of installing solar photovoltaic). We adjust the average cost effectiveness of $0.04/kWh saved for LAC.
+
+"
+Transition heating to heat pumps,"- $5/MWhth capital cost, reaching cost parity in 10 years
+
+- $0.90/MWhth non-fuel operations and maintenance","We use the same cost data as for low-temperature heat pumps used in industrial energy. Rissman (2022) estimates that heat pumps have a levelized capital cost of $8/MW of thermal heat demand compared to other technologies, but that this cost premium is shrinking rapidly, with a $1.50 savings in non-fuel opex in the US in 2022 dollars. (No discount rate is documented in this report, and we use levelized costs as presented)."

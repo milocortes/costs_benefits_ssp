@@ -1,0 +1,9 @@
+Transformation,Cost,Source
+Reducing enteric fermentation ,"- $40/head
+
+
+
+","The cost of reduced enteric fermentation is taken as the range of costs in Table 5-59 in EPA (2019) for fermentation inhibitors, and the nominal value is the average of that range. McKinsey (2020) reports breed change as a no-cost transformation. The costs of enteric fermentation inhibitors are converted from 2010 to 2019 dollars and adjusted to LAC values."
+Managing manure,- $10/TLU,Frank et al. (2018) suggest global costs of digesters from $8-$38/ Tropical livestock units (TLU). We use an average for digesters and then adjust to account for the fact that much of the manure in this transformation is handled by lower-cost methods such as spreading on fields.
+Silvopasture,- $45/ha/year,"We conservatively estimate silvopasture’s cost as the same as the cost of restoring degraded land, although this may be a higher cost than is seen in the literature.
+Pagiola et al. (2007), for example, provide a range of costs for silvopasture, from $180 to $400/ha, which would be distributed across multiple years. They also estimate that silvopasture can increase stocking rates by 25% for cattle and reduce animal mortality.  "

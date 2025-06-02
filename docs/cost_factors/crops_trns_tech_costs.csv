@@ -1,0 +1,8 @@
+Transformation,"Technical costs
+(Labor cost average in 2019 USD)
+(Negative values indicate avoided costs, i.e., savings)",Notes and data sources
+Reduce excess fertilizer use ,- $200/ton of fertilizer,"West (2017), Good and Beatty (2011).
+We calculate the cost of eliminating excess N as the avoided cost of fertilizer using the minimum, average, and maximum costs per ton of urea over the past five years available for download, accessed June 17, 2023.
+"
+Expand conservation agriculture ,- $20/ha under conservation agriculture,"Savings from avoided fuel and labor expenditures make this transformation a technical cost savings. Crop-specific estimates include savings of $232/ha for soy and $84/ha for maize (SHP, EDF, and Isom [2021]), and general savings estimated at $23/ha (Frank et al., 2018). We estimate $20/ha."
+Improve rice management,- $30/ha under improved rice management,"McKinsey (2020) describes various rice-management practices and techniques that can yield significant carbon reductions, all at negative technical cost. Chirinda et al.'s (2018) metanalysis of rice management describes impacts on greenhouse gases (GHGs) and yields in Latin America for a variety of these practices, and we use that data to inform the ranges. Chakraborty et al. (2017, Supplementary Table S8) describes the difference in costs for these practices globally, which we adapt here, adjusting in dollar values from 2017 to 2019."

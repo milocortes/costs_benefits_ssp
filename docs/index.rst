@@ -49,12 +49,6 @@ and benefits.
 +---------------------------------------------+--------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
 
 
-.. csv-table:: Subsectors modeled in SISEPUEDE
-   :file: /home/milo/Music/prueba.csv
-   :header-rows: 1
-
-
-
 Contents
 --------
 .. toc example struct from https://github.com/readthedocs/sphinx_rtd_theme/blob/c9b1bde560d8ee31400e4e4f92f2e8d7a42265ce/docs/index.rst
@@ -71,14 +65,13 @@ Contents
    :caption: Cost Factors Description
    :hidden:
 
-   cost_factors/agriculture.rst
-   cost_factors/building.rst
-   cost_factors/energy_production.rst
-   cost_factors/forest_land_use.rst
-   cost_factors/industry.rst
-   cost_factors/livestock.rst
-   cost_factors/transport.rst
-   cost_factors/waste.rst
+   ssp_sectors/agriculture.rst
+   ssp_sectors/building.rst
+   ssp_sectors/energy_production.rst
+   ssp_sectors/forest_land_use.rst
+   ssp_sectors/industry.rst
+   ssp_sectors/transport.rst
+   ssp_sectors/waste.rst
 
 .. toctree::
    :caption: Defining Strategies

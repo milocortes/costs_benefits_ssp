@@ -1,0 +1,13 @@
+Transformation,"Technical costs
+(LAC average in 2019 USD)
+(Negative values indicate avoided costs, i.e., savings)",Notes and data sources
+Transition to a renewable grid,"- Capex, non-fuel opex, and fuels are calculated endogenously
+
+- $2.70/MWh of new transmission
+","NemoMod calculates the least-cost pathway to a renewable grid, including capital, operations and maintenance, and fuel costs.
+
+According to the National Renewable Energy Laboratory (Gorman et al., 2019), the levelized cost of new transmission in the US ranges from $1/MWh to $10/MWh. We use an average of $5/MWh and convert to LAC."
+Produce green hydrogen,- Endogenously calculated in NemoMod based on increased demand for renewable electricity to produce hydrogen.,
+Reduce transmission losses,- Varies by country,"The Inter-American Development Bank (Brichettei et al., 2021) estimates the cost between 2020 and 2030 of upgrading each country’s grid to meet Sustainable Development Goals (SDGs) to 2030. We use a simple annual average as an approximation of the annual cost of upgrades in each country that would yield reductions in transmission losses.  "
+Minimize fugitive emissions leaks,- $20/tCO2e,"Studies suggest that fugitive emissions could be abated for less than $14/tCO2e in the US oil and gas industry through various technologies (ICF International, 2014, Figures A-4 and A-5). We use a conservative estimate, given variations in discount rates, assumptions about methane prices, and so on."
+Flare fugitive emissions,- $2/tCO2e,We assume flaring will be one-tenth the cost of fixing leaks.

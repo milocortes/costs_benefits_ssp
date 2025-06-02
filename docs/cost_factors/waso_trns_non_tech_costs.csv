@@ -1,0 +1,9 @@
+Benefit category,Benefit value or valuation method,Data source
+Value of waste avoided,"- $700/ton of food waste avoided
+","Food waste occurs across food types, and without specific information on the types of food that are wasted and have recovery potential in the supply chain, we use the average price of food across all product types.
+ "
+Reduced environmental and health impacts from open dumps to managed systems,- $115/ton of unmanaged waste transitioned to managed pathways,"Wilson et al. (2015) suggest a “conservative” cost of $20-50/capita/year from unmanaged waste and describe an average waste of 220 kg/capita/year among the poorest. We calculate costs assuming $20/capita and 0.22 ton/capita, adjusted from 2015 to 2019 dollars.
+
+
+"
+Value of CH4 captured in landfills and used for energy,- Endogenously assessed in the energy model,
