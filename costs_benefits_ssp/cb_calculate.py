@@ -1199,6 +1199,9 @@ class CostBenefits:
             #7. Get columns
             data_merged["strategy_code"] = data_merged["strategy_code.tx"]
             data_merged["future_id"]= data_merged["future_id.tx"]
+            data_merged["variable_value_baseline"] = data_merged["fgtv_co2e_expected_per_demand"]
+            data_merged["variable_value_pathway"] = data_merged["value.fg_tx"]
+
             data_merged = data_merged[SSP_GLOBAL_COLNAMES_OF_RESULTS]
 
             #8. If tehre are NANs or NAs in the value, replace them with 0.
