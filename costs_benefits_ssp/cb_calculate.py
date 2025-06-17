@@ -1204,7 +1204,7 @@ class CostBenefits:
             data_merged['variable_value_baseline'] = data_merged["fgtv_co2e_expected_per_demand"]
             data_merged['variable_value_pathway'] = data_merged["value.fg_tx"] 
 
-            
+
             data_merged = data_merged[SSP_GLOBAL_COLNAMES_OF_RESULTS]
 
             #8. If tehre are NANs or NAs in the value, replace them with 0.
@@ -1441,8 +1441,8 @@ class CostBenefits:
 
             ## Agregamos usado para calcular la diferencia en la estrategia baseline y el pathway
             ## En este caso, se pondrá cero en el valor del baseline y en el pathway
-            gpd['variable_value_baseline'] = 0
-            gpd['variable_value_pathway'] = 0
+            gdp['variable_value_baseline'] = 0
+            gdp['variable_value_pathway'] = 0
             gdp = gdp[SSP_GLOBAL_COLNAMES_OF_RESULTS]
 
             return gdp
