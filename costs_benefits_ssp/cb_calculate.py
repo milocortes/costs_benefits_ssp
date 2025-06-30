@@ -862,7 +862,7 @@ class CostBenefits:
             ## En este caso, se pondrá cero en el valor del baseline
             tmp['variable_value_baseline'] = 0
             if "difference" in list(tmp.columns):
-                tmp['variable_value_pathway'] = tmp["difference"]
+                tmp['variable_value_pathway'] = tmp["difference_value"]
             else:
                 tmp['variable_value_pathway'] = 0.0
             output = tmp.copy()

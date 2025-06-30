@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="costs_benefits_ssp",
-    version="0.1.15",
+    version="0.1.16",
     author="Hermilo Cortés",
     author_email="hermilocg@tec.mx",
     description="Costs and Benefits package",
