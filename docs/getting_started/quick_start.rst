@@ -6,14 +6,14 @@ Usage
 
     # Load packages
     from costs_benefits_ssp.cb_calculate import CostBenefits
-    import pandas as pd 
-    import os 
+    import pandas as pd
+    import os
 
     # Define paths
-    SSP_RESULTS_PATH = "/home/milo/Documents/egtp/SISEPUEDE/CB/cb_ssp_refac/package"
+    SSP_RESULTS_PATH = "https://raw.githubusercontent.com/milocortes/costs_benefits_ssp/refs/heads/main/test_data"
 
     # Load data
-    ssp_data = pd.read_csv(os.path.join(SSP_RESULTS_PATH, "iran.zip"))
+    ssp_data = pd.read_csv(os.path.join(SSP_RESULTS_PATH, "sisepuede_results_sisepuede_run_2025-02-11T11;37;41.739098_WIDE_INPUTS_OUTPUTS.csv"))
     att_primary = pd.read_csv(os.path.join(SSP_RESULTS_PATH, "ATTRIBUTE_PRIMARY.csv"))
     att_strategy = pd.read_csv(os.path.join(SSP_RESULTS_PATH, "ATTRIBUTE_STRATEGY.csv"))
     strategy_code_base = "BASE"
@@ -25,14 +25,13 @@ Usage
     # Each sheet represents a table in the cost and benefit program database.
     # If the Excel file name is not given, the file will be saved with the default name cb_config_params.xlsx on the current python session.
 
-    CB_DEFAULT_DEFINITION_PATH = "/home/milo/Documents/egtp/SISEPUEDE/CB/ejecuciones_cb_paquete/croatia_tornado/cb_factores_costo"
+    CB_DEFAULT_DEFINITION_PATH = os.getcwd()
     CB_DEFAULT_DEFINITION_FILE_PATH = os.path.join(CB_DEFAULT_DEFINITION_PATH, "cb_config_params.xlsx")
 
     cb.export_db_to_excel(CB_DEFAULT_DEFINITION_FILE_PATH)
 
-
     # Once that the excel file has been updated, we can reload it in order to update the cost factors database
-    cb.load_cb_parameters("/home/milo/Documents/egtp/SISEPUEDE/CB/cb_ssp_refac/package/cb_config_params.xlsx")
+    cb.load_cb_parameters(CB_DEFAULT_DEFINITION_FILE_PATH)
 
     # Compute System Costs
     results_system = cb.compute_system_cost_for_all_strategies()
@@ -51,7 +50,7 @@ Usage
     results_all_pp_shifted = cb.cb_shift_costs(results_all_pp)
 
     # Save the results
-    results_all_pp_shifted.to_csv("/home/milo/Documents/egtp/SISEPUEDE/CB/cb_ssp_refac/cost_benefit_results_tornado.csv", index = False)
+    results_all_pp_shifted.to_csv("cba_resultados.csv", index = False)
 
 
 
