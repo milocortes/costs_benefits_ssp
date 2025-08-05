@@ -7,12 +7,14 @@ requires-python = ">=3.11"
 dependencies = [
     "openpyxl>=3.1.2",
     "pandas>=2.2.1",
+    "polars[all,ll]>=1.32.0",
     "sqlalchemy>=2.0.29",
 ]
 
 [dependency-groups]
 dev = [
     "costs-benefits-ssp",
+    "ipython>=9.4.0",
     "setuptools>=80.9.0",
     "sphinx>=8.2.3",
     "sphinx-autobuild>=2024.10.3",
