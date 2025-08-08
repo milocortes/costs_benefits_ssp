@@ -35,9 +35,6 @@ from costs_benefits_ssp.model.cb_data_model import (AgrcLVSTProductivityCostGDP,
 from costs_benefits_ssp.model.cb_update_data_model import update_db_schema
 from sqlalchemy import update
 
-import polars as pl 
-from costs_benefits_ssp.model.SQL_statemets import Statement
-
 class CostBenefits:
     """
     Clase que carga los archivos definidos en los Enum.
@@ -54,20 +51,22 @@ class CostBenefits:
 
     """
     def __init__(self, 
-                 ssp_data : pl.DataFrame,
-                 att_primary : pl.DataFrame,
-                 att_strategy : pl.DataFrame,
+                 ssp_data : pd.DataFrame,
+                 att_primary : pd.DataFrame,
+                 att_strategy : pd.DataFrame,
                  strategy_code_base : str,
                  logger: Union[logging.Logger, None] = None
                  ) -> None:
 
         self.session = self.initialize_session()
         self.strategy_to_txs : Dict[str, List[str]] = self.get_strategy_to_txs(att_strategy)
-        self.att_strategy = pl.from_pandas(att_strategy)
+        self.att_strategy = att_strategy
         self.strategy_code_base = strategy_code_base
         self.ssp_data = self.marge_attribute_strategy(ssp_data, att_primary, att_strategy)
-        self.ssp_list_of_vars = self.ssp_data.columns
+        self.ssp_list_of_vars = list(self.ssp_data) 
         self.ssp_data = self.add_additional_columns()
+        self.ssp_list_of_vars = list(self.ssp_data) 
+        #self.pl_ssp_data = pl.from_pandas(self.ssp_data)
 
 
     ##############################################
@@ -80,28 +79,9 @@ class CostBenefits:
                  att_primary : pd.DataFrame,
                  att_strategy : pd.DataFrame,      
                 ) -> pd.DataFrame:
-
-        ssp_data = pl.from_pandas(ssp_data)
-        att_primary = pl.from_pandas(att_primary)
-        att_strategy = pl.from_pandas(att_strategy)
-
-        ### Join att_primary and att_strategy strategy_id
-        merged_attributes = att_primary.join(
-                    att_strategy, 
-                    on = "strategy_id",
-                    how = "inner"
-                )
-
-        ### Add ssp output information
-        complete_data = merged_attributes.select(
-                    "primary_id", "strategy_code", "future_id"
-                ).join(
-                    ssp_data,
-                    on = "primary_id",
-                    how = "inner"
-                )
-
-        return complete_data
+        
+        merged_attributes = att_primary.merge(right = att_strategy, on = "strategy_id")
+        return merged_attributes[['primary_id', 'strategy_code', 'future_id']].merge(right = ssp_data, on='primary_id')
 
         
 
@@ -149,36 +129,24 @@ class CostBenefits:
                 ) -> pd.DataFrame:
         
         # Obtenemos datos de las salidas de ssp
-        data = self.ssp_data.clone()
+        data = self.ssp_data.copy()
 
         #add calculation of total TLUs to data
-        tlu_conversions = pl.read_database(query = Statement.LVSTTLUConversion.value, connection = self.session.bind)
+        tlu_conversions = pd.read_sql(self.session.query(LVSTTLUConversion).statement, self.session.bind)
 
 
         pop_livestock = data[SSP_GLOBAL_SIMULATION_IDENTIFIERS + [i for i in self.ssp_list_of_vars if "pop_lvst" in i]]
-        pop_livestock = pop_livestock.unpivot(
-                    index=['primary_id', 'time_period', 'region', 'strategy_code', 'future_id']
-                    )
-        pop_livestock = pop_livestock.join(
-                            tlu_conversions, 
-                            on = "variable",
-                            how = "inner")
+        pop_livestock = pop_livestock.melt(id_vars=['primary_id', 'time_period', 'region', 'strategy_code', 'future_id'])
+        pop_livestock = pop_livestock.merge(right=tlu_conversions, on = "variable")
 
-        pop_livestock = pop_livestock.with_columns(
-            total_tlu = pl.col("value")*pl.col("tlu")
-        )   
+        pop_livestock["total_tlu"] = pop_livestock["value"] * pop_livestock["tlu"]
 
-        pop_livestock_summarized = pop_livestock.group_by(
-                        SSP_GLOBAL_SIMULATION_IDENTIFIERS
-                    ).agg(
-                        (pl.col("total_tlu").sum()).alias("lvst_total_tlu")
-                    )
+        pop_livestock_summarized = pop_livestock.groupby(SSP_GLOBAL_SIMULATION_IDENTIFIERS).\
+                                                    agg({"total_tlu" : "sum"}).\
+                                                    rename(columns={"total_tlu":"lvst_total_tlu"}).\
+                                                    reset_index()
 
-        data = data.join(
-            pop_livestock_summarized,
-            on = SSP_GLOBAL_SIMULATION_IDENTIFIERS,
-            how = "inner"
-        )
+        data = data.merge(right = pop_livestock_summarized, on = SSP_GLOBAL_SIMULATION_IDENTIFIERS)
 
        
         #Calculate the number of people in each sanitation pathway by merging the data with the sanitation classification
@@ -187,89 +155,60 @@ class CostBenefits:
         #There was concern that we need to account for differences in ww production between urban and rural
         #But we don't since the pathway fractions for them are mutually exclusive! Hooray!
 
-        sanitation_classification = pl.read_database(query = Statement.WALISanitationClassificationSP.value, connection = self.session.bind)
+        sanitation_classification = pd.read_sql(self.session.query(WALISanitationClassificationSP).statement, self.session.bind)
 
-        all_tx_on_ssp_data = data.select("strategy_code").unique().to_series().to_list()
+        all_tx_on_ssp_data = list(data.strategy_code.unique())
         all_tx_on_ssp_data.remove(self.strategy_code_base)
 
 
-        data_strategy = self.cb_get_data_from_wide_to_long(data, all_tx_on_ssp_data, sanitation_classification.select("variable").to_series().to_list())
-        data_strategy = data_strategy.join(
-            sanitation_classification,
-            on = "variable",
-            how = "inner"
-        )
+        data_strategy = self.cb_get_data_from_wide_to_long(data, all_tx_on_ssp_data, sanitation_classification["variable"].to_list())
+        data_strategy = data_strategy.merge(right = sanitation_classification, on='variable')
 
 
         population = self.cb_get_data_from_wide_to_long(data, all_tx_on_ssp_data, ['population_gnrl_rural', 'population_gnrl_urban'])
-        population = population.rename({"variable" : "population_variable"})
+        population = population.rename(columns = {"variable" : "population_variable"})
 
 
-        data_strategy = data_strategy.join(
-            population.select("strategy_code", "region", "time_period", "future_id", "population_variable", "value"),
-            on = ["strategy_code", "region", "time_period", "future_id", "population_variable"],
-            suffix = ".pop"
-        )
-        
-        data_strategy = data_strategy.filter(
-            pl.col("population_variable").is_in(data_strategy["population_variable"])
-        )
+        data_strategy = data_strategy.merge(right = population[ ["strategy_code", "region", "time_period", "future_id", "population_variable", "value"]], on = ["strategy_code", "region", "time_period", "future_id", "population_variable"], suffixes = ["", ".pop"])
+        data_strategy = data_strategy[data_strategy["population_variable"].isin(data_strategy["population_variable"])].reset_index(drop=True)
+        data_strategy["pop_in_pathway"] = data_strategy["value"]*data_strategy["value.pop"]
 
-        data_strategy = data_strategy.with_columns(
-            pop_in_pathway = pl.col("value")*pl.col("value.pop")
-        )
 
         #Do the same thing with the baseline strategy
         data_base = self.cb_get_data_from_wide_to_long(data, self.strategy_code_base, sanitation_classification["variable"].to_list())
-        
-        data_base = data_base.join(
-            sanitation_classification,
-            on = "variable",
-            how = "inner"
-        )
+        data_base = data_base.merge(right = sanitation_classification, on = 'variable')
 
 
         population_base = self.cb_get_data_from_wide_to_long(data, self.strategy_code_base, ['population_gnrl_rural', 'population_gnrl_urban'])
-        population_base = population_base.rename({"variable" : "population_variable"})
+        population_base = population_base.rename(columns = {"variable" : "population_variable"})
 
-        data_base = data_base.join(
-            population_base.select('region', 'time_period', 'future_id', "population_variable", "value"),
-            on = ['region', 'time_period', 'future_id', "population_variable"],
-            how = "inner",
-            suffix = ".pop"
-        )
-        data_base = data_base.filter(
-            pl.col("population_variable").is_in(data_base["population_variable"])
-        )
-        data_base = data_base.with_columns(
-            pop_in_pathway = pl.col("value")*pl.col("value.pop")
-        )
+        data_base = data_base.merge(right = population_base[['region', 'time_period', 'future_id', "population_variable", "value"]], on = ['region', 'time_period', 'future_id', "population_variable"], suffixes = ["", ".pop"])
+
+        data_base = data_base[data_base["population_variable"].isin(data_base["population_variable"])].reset_index(drop = True)
+        data_base["pop_in_pathway"] = data_base["value"]*data_base["value.pop"]
 
 
-        #data_strategy.merge(right=data_base[['region', 'time_period', 'future_id', 'pop_in_pathway']],  on = ['region', 'time_period', 'future_id'], suffixes = ["", "_base_strat"])
-        data_new = pl.concat([data_strategy, data_base], how="vertical_relaxed")
+        data_strategy.merge(right=data_base[['region', 'time_period', 'future_id', 'pop_in_pathway']],  on = ['region', 'time_period', 'future_id'], suffixes = ["", "_base_strat"])
+
+
+
+        data_new = pd.concat([data_strategy, data_base], ignore_index = True)
 
         #reduce it by the sanitation category
 
         gp_vars = ["primary_id", "region", "time_period", "strategy_code", "future_id", "difference_variable"]
 
-        data_new_summarized = data_new.group_by(
-                gp_vars
-            ).agg(
-                (pl.col("pop_in_pathway").sum()).alias("value")
-            )
-        data_new_summarized = data_new_summarized.rename({"difference_variable" : "variable"})
+        data_new_summarized = data_new.groupby(gp_vars).agg({"pop_in_pathway" : "sum"}).rename(columns = {"pop_in_pathway" : "value"}).reset_index()
+        data_new_summarized = data_new_summarized.rename(columns = {"difference_variable" : "variable"})
+
+        new_list_of_variables = data_new_summarized["variable"].unique()  
 
         pivot_index_vars = [i for i in data_new_summarized.columns if i not in ["variable", "value"]]
-        data_new_summarized_wide = data_new_summarized.pivot(index = pivot_index_vars, on="variable", values="value")
+        data_new_summarized_wide = data_new_summarized.pivot(index = pivot_index_vars, columns="variable", values="value").reset_index()  
 
-        data = data.join(
-            data_new_summarized_wide, 
-            on = ['primary_id', 'region', 'time_period', 'future_id', 'strategy_code'],
-            how = "inner"
-        )
+        data = data.merge(right=data_new_summarized_wide, on = ['primary_id', 'region', 'time_period', 'future_id', 'strategy_code'])
 
-        return data.sort(by = ["primary_id", "region", "time_period"])
+        return data
 
     ##############################################
 	#------------- UTILITIES   ------------#
@@ -298,14 +237,10 @@ class CostBenefits:
         if not isinstance(strategy_code, list):
             strategy_code = [strategy_code]
 
-        data_long = data.filter(
-            pl.col("strategy_code").is_in(strategy_code)
-        ).select(
-            SSP_GLOBAL_SIMULATION_IDENTIFIERS + variables
-        ).unpivot(
-            index = SSP_GLOBAL_SIMULATION_IDENTIFIERS
-        )
-
+        data_wide = data[data["strategy_code"].isin(strategy_code)][SSP_GLOBAL_SIMULATION_IDENTIFIERS + variables].reset_index(drop = True)
+        
+        data_long = data_wide.melt(id_vars=SSP_GLOBAL_SIMULATION_IDENTIFIERS)
+    
 
         return data_long  
 
@@ -353,7 +288,7 @@ class CostBenefits:
                         self
         ) -> List[str]:
         
-        all_strategies = self.ssp_data["strategy_code"].unique().to_list()
+        all_strategies = list(self.ssp_data.strategy_code.unique())
         all_strategies.remove(self.strategy_code_base)
 
         return all_strategies
